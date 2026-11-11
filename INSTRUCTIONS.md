@@ -10,6 +10,10 @@ Follow the instructions below to get started!
 
 Press ``Ctrl-` `` &nbsp; to open a terminal window.
 
+## Configure the local environment
+
+Copy `.env.example` to `.env` and replace the placeholder endpoint with your Microsoft Foundry project endpoint. Keep `.env` local; it is excluded from Git by `.gitignore`.
+
 ## Run your agent locally
 
 To run the agent that you created in AI Foundry, and view the output in the terminal run the following command:

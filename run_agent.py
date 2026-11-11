@@ -1,11 +1,29 @@
 # Before running the sample:
 #    pip install "azure-ai-projects>=2.1.0"
 
+import os
+
 from azure.identity import DefaultAzureCredential
 from azure.ai.projects import AIProjectClient
 
-endpoint = "https://labdio103-resource.services.ai.azure.com/api/projects/labdio103"
-agent_name = "TestlabMinimal"
+endpoint = os.environ.get("FOUNDRY_PROJECT_ENDPOINT")
+agent_name = os.environ.get("FOUNDRY_AGENT_NAME")
+
+missing_settings = [
+    name
+    for name, value in {
+        "FOUNDRY_PROJECT_ENDPOINT": endpoint,
+        "FOUNDRY_AGENT_NAME": agent_name,
+    }.items()
+    if not value
+]
+if missing_settings:
+    missing = ", ".join(missing_settings)
+    raise RuntimeError(
+        f"Missing required environment variable(s): {missing}. "
+        "Configure them in your local .env file."
+    )
+
 user_message = input("Digite sua mensagem: ")
 
 with (
